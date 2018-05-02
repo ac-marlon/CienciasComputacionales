@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Algoritmo de Djikstra</title>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA1gybajGje1CxFHgzphPqhBTkhzudNWd_u13Cffh29fB-9TXQzxQVh6gduUCW9NeYlGOi-AFsvIHQpg"
+      type="text/javascript"></script>
+<script src="algoritmoDjikstra.js"></script>
+<script type="text/javascript">
+
+function load(){
+  if (GBrowserIsCompatible()) {
+  
+	//Inicio invocacion algoritmo
+	var map = 	{
+				yacopi:{guaduas:84.4,laMesa:172,paratebueno:348,simijaca:144,choconta:177,ubala:240},
+				laPalma:{yacopi:25.4,paratebueno:322,tocaima:214,silvania:208,zipaquira:97.8,gacheta:190},
+				guaduas:{cajica:135,guayabetal:207,girardot:158,fusagasuga:188,gacheta:218},
+				villeta:{laPalma:66.3,cajica:103,guaduas:34.3,laMesa:115,simijaca:197,choconta:157},
+				laMesa:{silvania:85.7,soacha:50.4,guayabetal:134,choconta:140,ubala:193},
+				tocaima:{gachala:246,laMesa:40.4,paratebueno:262,fusagasuga:66.1},
+				girardot:{laMesa:69.1,simijaca:249,choconta:209,medina:299,ubala:262,guayabetal:195},
+				silvania:{gachala:211,medina:231,guaduas:355,laMesa:84.1,simijaca:188,choconta:145},
+				fusagasuga:{yacopi:236,villeta:155,tocaima:100,cajica:106,soacha:45,gacheta:183},
+				soacha:{gachala:168,medina:188,laPalma:153,girardot:116,fusagasuga:51.7},
+				simijaca:{silvania:190,soacha:145,guayabetal:211,girardot:261,laPalma:157,ubala:189},
+				zipaquira:{yacopi:122,villeta:112,silvania:111,soacha:66.4,girardot:182,gacheta:88.3},
+				cajica:{yacopi:135,villeta:98.4,tocaima:126,silvania:99.4,soacha:51.6,laPalma:109},
+				choconta:{cajica:50.8,guayabetal:163,paratebueno:193,fusagasuga:149,zipaquira:52.3,gacheta:83.7},
+				gacheta:{guaduas:218,laMesa:170,laPalma:191,simijaca:166,choconta:88.6,ubala:24.2},
+				guayabetal:{gachala:234,medina:105,laMesa:140,paratebueno:96.5,zipaquira:134},
+				ubala:{villeta:210,tocaima:233,laPalma:215,soacha:140,zipaquira:112,gacheta:24.2},
+				gachala:{yacopi:252,tocaima:246,paratebueno:131,cajica:121,laPalma:227,choconta:138},
+				medina:{yacopi:356,laPalma:330,guaduas:312,laMesa:245,simijaca:238,cajica:199},
+				paratebueno:{gachala:131,medina:29.4,laMesa:236,girardot:295,fusagasuga:231},
+				},
+				
+			    graph = new Graph(map);
+			
+			var yacopi = new GLatLng(5.459722,-74.338333);
+			var laPalma = new GLatLng(5.360556,-74.389722);
+			var guaduas = new GLatLng(5.069444,-74.598056);
+			var villeta = new GLatLng(5.012778, -74.473056);
+			var laMesa = new GLatLng(4.630278,-74.4625);
+			var tocaima = new GLatLng(4.457778,-74.634722);
+			var girardot = new GLatLng(4.303611,-74.803889);
+			var silvania = new GLatLng(4.403333,-74.388056);
+			var fusagasuga = new GLatLng(4.337222,-74.364444);
+			var soacha = new GLatLng(4.578056,-74.214444);
+			var simijaca = new GLatLng(5.503333,-73.851667);
+			var zipaquira = new GLatLng(5.024722,-74.001389);
+			var cajica = new GLatLng(4.916667, -74.025);
+			var choconta = new GLatLng(5.146667,-73.6825);
+			var gacheta = new GLatLng(4.816389,-73.636111);
+			var guayabetal = new GLatLng(4.215278,-73.814444);
+			var ubala = new GLatLng(4.743889,-73.534722);
+			var gachala = new GLatLng(4.693056,-73.52);
+			var medina = new GLatLng(4.509167,-73.349444);
+			var paratebueno = new GLatLng(4.375278,-73.213056);
+			
+			//Aqui se deben poner las ciudades de inicio y fin
+
+			var camino = graph.findShortestPath('yacopi','gachala');
+			
+			var puntos = new Array();
+			
+			for (var i = 0; i < camino.length; i++) {
+				if (camino[i] == "yacopi") {
+					puntos.push(yacopi);
+				} else if (camino[i] == "laPalma"){
+					puntos.push(laPalma);
+				} else if (camino[i] == "guaduas"){
+					puntos.push(guaduas);
+				} else if (camino[i] == "villeta"){
+					puntos.push(villeta);
+				} else if (camino[i] == "laMesa"){
+					puntos.push(laMesa);
+				} else if (camino[i] == "tocaima"){
+					puntos.push(tocaima);
+				} else if (camino[i] == "girardot"){
+					puntos.push(girardot);
+				} else if (camino[i] == "silvania"){
+					puntos.push(silvania);
+				} else if (camino[i] == "fusagasuga"){
+					puntos.push(fusagasuga);
+				} else if (camino[i] == "soacha"){
+					puntos.push(soacha);
+				} else if (camino[i] == "simijaca"){
+					puntos.push(simijaca);
+				} else if (camino[i] == "zipaquira"){
+					puntos.push(zipaquira);
+				} else if (camino[i] == "cajica"){
+					puntos.push(cajica);
+				} else if (camino[i] == "choconta"){
+					puntos.push(choconta);
+				} else if (camino[i] == "gacheta"){
+					puntos.push(gacheta);
+				} else if (camino[i] == "guayabetal"){
+					puntos.push(guayabetal);
+				} else if (camino[i] == "ubala"){
+					puntos.push(ubala);
+				} else if (camino[i] == "gachala"){
+					puntos.push(gachala);
+				} else if (camino[i] == "medina"){
+					puntos.push(medina);
+				} else if(camino[i] == "paratebueno"){
+					puntos.push(paratebueno);
+				}
+			}
+			
+			document.getElementById("camino").innerHTML = camino;
+			
+	//Fin invocacion algoritmo
+	
+    var map = new GMap2(document.getElementById("mapa"));
+    map.setCenter(new GLatLng(4.6,-74.083333), 9);
+    
+    var lineageodesica={geodesic:true};
+	var linearecta={geodesic:false};
+       
+    var geodesica = new GPolyline(puntos, "#ff1a1a", 3, 0.7, lineageodesica);
+      
+    map.addOverlay(geodesica);
+    
+    // Calculamos la distancia en kilometros
+    var distancia = geodesica.getLength()/1000;
+    
+    document.getElementById("distancia").innerHTML = distancia;
+    
+  }
+}
+
+</script>
+</head>
+<body onload="load();" onunload="GUnload();" style="background-color:powderblue; text-align: center;" >
+
+<h1>Algoritmo de Djikstra</h1>
+
+<div id="mapa" style="width:900px; height:700px; margin: 10px auto 15px auto;">
+</div>
+
+El camino mas corto es <span id="camino"></span> con una longitud de <span id="distancia"></span> Km.
+
+</body>
+</html>
